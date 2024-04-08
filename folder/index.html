@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link type="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <label for="num-a">elo</label>
+    <input type="range" min="1" max="100" value="50" id="num-a" />
+    <label for="num-b"> elo elo</label>
+    <input type="range" min="1" max="100" value="50" id="num-b" />
+    <br />
+
+    <button plus style="width: 3rem">+</button>
+    <button multiply style="width: 3rem">*</button>
+    <button minus style="width: 3rem">-</button>
+    <button divide style="width: 3rem">/</button>
+
+    <marquee id="hej"> hej</marquee>
+
+    <script>
+      const input1 = document.getElementById("num-a");
+      const input2 = document.getElementById("num-b");
+
+      const button1 = document.querySelector("[plus]");
+
+      const button2 = document.querySelector("[multiply]");
+      const button3 = document.querySelector("[minus]");
+      const button4 = document.querySelector("[divide]");
+
+      const div1 = document.getElementById("hej");
+
+      button1.addEventListener("click", () => {
+        console.log(Number(input1.value), Number(input2.value));
+        div1.innerHTML = Number(input1.value) + Number(input2.value);
+      });
+      button2.addEventListener("click", () => {
+        div1.innerHTML = Number(input1.value) * Number(input2.value);
+      });
+      button3.addEventListener("click", () => {
+        div1.innerHTML = Number(input1.value) - Number(input2.value);
+      });
+      button4.addEventListener("click", () => {
+        div1.innerHTML = Number(input1.value) / Number(input2.value);
+      });
+    </script>
+  </body>
+</html>
