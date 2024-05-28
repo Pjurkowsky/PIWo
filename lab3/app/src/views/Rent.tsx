@@ -3,9 +3,9 @@ import footer from "../assets/footer.jpg";
 
 function Rent() {
   return (
-    <section className="flex flex-col-reverse gap-y-4 pb-4 pt-4 h-auto mb-6 w-full m-auto px-8 ">
+    <section className="flex flex-col-reverse gap-y-4 pb-4 pt-4 h-[35rem] mb-6 w-full m-auto px-8 lg:flex-row lg:gap-10">
       <div
-        className="w-full rounded-medium h-[250px] bg-no-repeat bg-right bg-cover flex flex-col justify-end items-start p-4"
+        className="w-full rounded-medium h-[25rem] lg:h-auto bg-no-repeat bg-right bg-cover flex flex-col justify-end items-start p-4"
         style={{ backgroundImage: `url(${footer})` }}
       ></div>
       <article className="flex flex-col h-full justify-center items-start gap-y-3">

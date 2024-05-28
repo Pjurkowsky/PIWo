@@ -54,22 +54,37 @@ function Navbar() {
               Find Offer
             </NavLink>
           </li>
-          <li>
-            <button
-              className="hidden lg:block lg:hover:text-hover lg:transition-colors lg:duration-300 cursor-pointer"
-              onClick={() => openAddHotelModal()}
-            >
-              Add Offer
-            </button>
-          </li>
-          <li>
-            <a
-              className="hidden lg:block hover:text-hover transition-colors duration-300"
-              href="#browse"
-            >
-              Browse
-            </a>
-          </li>
+          {user && (
+            <li>
+              <NavLink
+                className="hidden lg:block lg:hover:text-hover lg:transition-colors lg:duration-300"
+                to="chat"
+              >
+                Chat
+              </NavLink>
+            </li>
+          )}
+
+          {user && (
+            <li>
+              <button
+                className="hidden lg:block lg:hover:text-hover lg:transition-colors lg:duration-300 cursor-pointer"
+                onClick={() => openAddHotelModal()}
+              >
+                Add Offer
+              </button>
+            </li>
+          )}
+          {user && (
+            <li>
+              <NavLink
+                className="hidden lg:block hover:text-hover transition-colors duration-300"
+                to="my-offers"
+              >
+                My offers
+              </NavLink>
+            </li>
+          )}
           <li>
             <a
               className="hidden lg:block hover:text-hover transition-colors duration-300"

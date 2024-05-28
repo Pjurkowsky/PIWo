@@ -1,20 +1,26 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-hot-toast";
-function ContactModal({
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+
+import { deleteHotel } from "../services/hotelService";
+import { AuthContext } from "../context/AuthContext";
+import { useContext } from "react";
+import type { Hotel } from "../data";
+
+function DeleteHotelModal({
   dialogRef,
-  hotelName,
+  hotelToDelete,
 }: {
   dialogRef: React.RefObject<HTMLDialogElement>;
-  hotelName: string;
+  hotelToDelete: Hotel;
 }) {
+  const { user } = useContext(AuthContext);
+
   const closeDialog = () => {
     if (dialogRef.current) dialogRef.current.close();
   };
 
-  const sendEmail = () => {
-    toast.success("Email sent");
-    closeDialog();
+  const handleDelete = async () => {
+    if (user) await deleteHotel(hotelToDelete.id);
   };
 
   return (
@@ -28,12 +34,8 @@ function ContactModal({
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <p className="text-3xl font-[Italiana] mb-4">Contact</p>
-      <p className="mb-4">You're contacting the {hotelName} hotel</p>
-      <form>
-        <input className="border w-full h-96 rounded-medium" />
-      </form>
-
+      <p className="text-3xl font-[Italiana] mb-4">Delete offer</p>
+      Are you sure you want to delete the offer?
       <div className="flex justify-end mt-4 gap-x-4">
         <button
           className="flex flex-row py-2 px-6 outline-none cursor-pointer justify-center items-center gap-x-1 bg-primaryLight rounded-medium hover:bg-hover hover:text-neutral transition-colors duration-300"
@@ -42,14 +44,15 @@ function ContactModal({
           Close
         </button>
         <button
+          type="submit"
           className="flex flex-row py-2 px-6 outline-none cursor-pointer justify-center items-center gap-x-1 bg-primaryLight rounded-medium hover:bg-hover hover:text-neutral transition-colors duration-300"
-          onClick={() => sendEmail()}
+          onClick={() => handleDelete()}
         >
-          Send <FontAwesomeIcon icon={faEnvelope} />
+          Delete
         </button>
       </div>
     </dialog>
   );
 }
 
-export default ContactModal;
+export default DeleteHotelModal;

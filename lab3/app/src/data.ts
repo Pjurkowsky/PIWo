@@ -1,18 +1,19 @@
 import { Card1, Card2, Card3 } from "./assets/cards";
 
 export interface Hotel {
-  id: number;
+  id: string;
   name: string;
   location: string;
   price: number;
   stars: number;
   description: string;
   image: string;
+  userId?: string;
 }
 
 export const hotels: Hotel[] = [
   {
-    id: 0,
+    id: "LvTu2l7qc5W9UwuMATp7",
     name: "Harmony Hideaway Hotel",
     location: "France",
     price: 100,
@@ -22,7 +23,7 @@ export const hotels: Hotel[] = [
     image: Card1,
   },
   {
-    id: 1,
+    id: "2",
     name: "Harmony Hideaway Hotel",
     location: "Florence",
     price: 200,
@@ -32,7 +33,7 @@ export const hotels: Hotel[] = [
     image: Card2,
   },
   {
-    id: 2,
+    id: "3",
     name: "Hotel 3",
     location: "Wroclaw",
     price: 300,

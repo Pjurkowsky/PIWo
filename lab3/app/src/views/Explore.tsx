@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 import arrow from "../assets/Arrow.svg";
-
 import { Hotel } from "../data";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -38,21 +37,21 @@ function Explore({
         value={searchTerm}
         onChange={handleSearchChange}
       />
-      <section className="flex flex-col pt-16 h-auto w-full m-auto px-8 gap-y-4">
+      <section className="flex flex-col pt-16 h-auto w-full m-auto px-8 gap-y-4 lg:flex-row lg:gap-10 ">
         {filteredHotels.map((hotel: Hotel) => (
           <article
-            className="bg-white rounded-medium p-4 flex flex-col gap-y-8"
+            className="bg-white rounded-medium p-4 flex flex-col gap-y-8 lg:w-[30%]"
             key={hotel.id}
           >
             <div
-              className="w-full rounded-small h-[150px] bg-no-repeat bg-right bg-cover flex flex-row justify-between items-end p-4"
+              className="w-full rounded-small h-[150px] bg-no-repeat bg-right bg-cover flex flex-row justify-between items-end p-4 "
               style={{ backgroundImage: `url(${hotel.image})` }}
             >
-              <p className="bg-white py-2 px-4 rounded-small flex flex-row justify-center items-center gap-x-2">
+              <p className="bg-white py-2 px-4 rounded-small flex flex-row gap-x-2">
                 {hotel.location}
               </p>
               {viewOfferActive && (
-                <p className="bg-white py-2 px-4 rounded-small flex flex-row justify-center items-center gap-x-2">
+                <p className="bg-white py-2 px-4 rounded-small flex flex-row  gap-x-2">
                   <FontAwesomeIcon icon={faHeart} />
                 </p>
               )}

@@ -10,6 +10,8 @@ import {
   signOut,
   UserCredential,
 } from "firebase/auth";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { firestore } from "../fbconfig";
 
 type AuthContextType = {
   user: User | null;
@@ -58,7 +60,17 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const createUser = async (email: string, password: string) => {
     try {
-      return await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await addDoc(collection(firestore, "users"), {
+        email: userCredential.user.email,
+        uid: userCredential.user.uid,
+      });
+
+      return userCredential;
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }
@@ -75,7 +87,20 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   const loginUserWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      return await signInWithPopup(auth, provider);
+      const userCredential = await signInWithPopup(auth, provider);
+      const q = query(
+        collection(firestore, "users"),
+        where("uid", "==", userCredential.user.uid)
+      );
+      const results = await getDocs(q);
+      if (results.empty) {
+        await addDoc(collection(firestore, "users"), {
+          email: userCredential.user.email,
+          uid: userCredential.user.uid,
+        });
+      }
+
+      return userCredential;
     } catch (error) {
       if (error instanceof Error) alert(error.message);
     }

@@ -15,6 +15,8 @@ import Login from "./pages/Login";
 import Hotel from "./pages/Hotel";
 import AuthProvider from "./context/AuthContext";
 import Protected from "./pages/Protected";
+import Chat from "./pages/Chat";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,14 +24,16 @@ const router = createBrowserRouter(
       <Route path="" element={<Home />}></Route>
       <Route path="signup" element={<Signup />}></Route>
       <Route path="login" element={<Login />}></Route>
+      <Route path="find" element={<Find />}></Route>
       <Route
-        path="find"
+        path="my-offers"
         element={
           <Protected>
             <Find />
           </Protected>
         }
       ></Route>
+      <Route path="chat" element={<Chat />}></Route>
       <Route path="hotel/:id" element={<Hotel />}></Route>
     </Route>
   )
@@ -38,6 +42,7 @@ const router = createBrowserRouter(
 function AppLayout() {
   return (
     <>
+      <Toaster />
       <Navbar />
       <Outlet />
     </>
